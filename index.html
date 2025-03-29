@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Desk Ticketing System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        .navbar {
+            background: #3498db;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+            color: white;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .navbar a:hover {
+            background: #2980b9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .home-container {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            margin-top: 20px;
+            padding: 12px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="#" onclick="showHomePage()">Home</a>
+        <a href="#" onclick="showTicketSystem()">File a Ticket</a>
+        <a href="admin.php">Admin</a>
+        <a href="#" onclick="showAboutPage()">About</a>
+    </div>
+
+    <div class="home-container" id="homePage">
+        <h1>Welcome to the Help Desk</h1>
+    </div>
+
+    <div class="container" id="ticketSystem" style="display: none;">
+        <h1>Help Desk Ticketing System</h1>
+
+        <form id="ticketForm" action="save_ticket.php" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <button type="submit" class="btn-submit">Submit Ticket</button>
+        </form>
+    </div>
+
+    <div class="container" id="aboutPage" style="display: none;">
+        <h1>About Our Help Desk System</h1>
+        <p>This system allows users to submit support tickets which can be viewed by administrators.</p>
+    </div>
+
+    <script>
+        function showTicketSystem() {
+            hideAllPages();
+            document.getElementById('ticketSystem').style.display = 'block';
+        }
+
+        function showHomePage() {
+            hideAllPages();
+            document.getElementById('homePage').style.display = 'block';
+        }
+
+        function showAboutPage() {
+            hideAllPages();
+            document.getElementById('aboutPage').style.display = 'block';
+        }
+
+        function hideAllPages() {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('ticketSystem').style.display = 'none';
+            document.getElementById('aboutPage').style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', showHomePage);
+    </script>
+</body>
+</html>
